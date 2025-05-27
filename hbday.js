@@ -1,17 +1,10 @@
+
 // Данные открытки
 let wishes = [];
 let currentWishIndex = 0;
 let wishInterval;
-
-// Музыкальные файлы
-const musicFiles = {
-    'default': 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAaBDuH0fPTgjMGHm7A7+OZRQ0PVqzn7qlXGAhEnODwx2IhAzmO2O+8cCwFKbfP8NCPPwk',
-    'madagascar': 'мадагаскар - с днём рождения тебя.mp3',
-    'allegrova': 'YA_dyshu-Irina_Allegrova_-_Den_Rozhdeniya_-_S_Dnjom_Rozhdeniya_Uspekha_radosti_vezeniya_lyubykh_zhelanijj_ispolneniya_i_million_nochejj_i_dnejj_S_Dnjom_Rozhdeniya_Lyubvi_do_golovokruzheniya_i_74820012.mp3',
-    'falling-feathers': 'Falling Feathers - Happy Birthday To You.mp3',
-    'chorus-friends': 'Chorus Friends - Happy Birthday to You.mp3',
-    'relaxing': 'Relaxing Mode - Happy Birthday To You.mp3'
-};
+let blownCandles = 0;
+let totalCandles = 5;
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
@@ -44,47 +37,124 @@ function setupEventListeners() {
                 console.log('Микрофон недоступен:', err);
             });
     }
+
+    // Обработчики для свечей
+    setupCandleListeners();
+}
+
+// Настройка обработчиков свечей
+function setupCandleListeners() {
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('candle') && 
+            e.target.classList.contains('active') && 
+            document.getElementById('cakeSection').classList.contains('active')) {
+            
+            blowOutSingleCandle(e.target);
+        }
+    });
 }
 
 // Настройка распознавания звука
 function setupAudioRecognition(stream) {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const analyser = audioContext.createAnalyser();
-    const microphone = audioContext.createMediaStreamSource(stream);
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
-    
-    microphone.connect(analyser);
-    analyser.fftSize = 256;
-    
-    function detectBlow() {
-        analyser.getByteFrequencyData(dataArray);
-        
-        // Определение силы звука
-        let sum = 0;
-        for (let i = 0; i < dataArray.length; i++) {
-            sum += dataArray[i];
-        }
-        let average = sum / dataArray.length;
-        
-        // Если звук достаточно сильный, считаем что свечу задули
-        if (average > 50 && document.getElementById('cakeSection').classList.contains('active')) {
-            blowOutCandle();
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) {
+            console.log('AudioContext не поддерживается');
+            return;
         }
         
-        requestAnimationFrame(detectBlow);
+        const audioContext = new AudioContext();
+        const analyser = audioContext.createAnalyser();
+        const microphone = audioContext.createMediaStreamSource(stream);
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        
+        microphone.connect(analyser);
+        analyser.fftSize = 256;
+        
+        function detectBlow() {
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Определение силы звука
+            let sum = 0;
+            for (let i = 0; i < dataArray.length; i++) {
+                sum += dataArray[i];
+            }
+            let average = sum / dataArray.length;
+            
+            // Если звук достаточно сильный, считаем что свечу задули
+            if (average > 50 && document.getElementById('cakeSection').classList.contains('active')) {
+                blowRandomCandle();
+            }
+            
+            requestAnimationFrame(detectBlow);
+        }
+        
+        detectBlow();
+    } catch (error) {
+        console.log('Ошибка настройки аудио:', error);
     }
+}
+
+// Задувание случайной активной свечи
+function blowRandomCandle() {
+    const activeCandles = document.querySelectorAll('.candle.active');
+    if (activeCandles.length > 0) {
+        const randomIndex = Math.floor(Math.random() * activeCandles.length);
+        blowOutSingleCandle(activeCandles[randomIndex]);
+    }
+}
+
+// Задувание одной свечи
+function blowOutSingleCandle(candleElement) {
+    if (!candleElement.classList.contains('active')) return;
     
-    detectBlow();
+    candleElement.classList.remove('active');
+    candleElement.classList.add('blown-out');
+    blownCandles++;
+    
+    // Воспроизведение звука
+    playBirthdaySound();
+    
+    // Проверяем, все ли свечи задуты
+    if (blownCandles >= totalCandles) {
+        setTimeout(function() {
+            startCelebration();
+        }, 1000);
+    }
+}
+
+// Воспроизведение звука дня рождения
+function playBirthdaySound() {
+    const audio = document.getElementById('birthdaySound');
+    audio.currentTime = 0;
+    audio.play().catch(function(error) {
+        console.log('Не удалось воспроизвести звук:', error);
+    });
 }
 
 // Добавление пожелания
 function addWish() {
     const wishInput = document.getElementById('wishInput');
+    const wishSender = document.getElementById('wishSender');
+    const wishFont = document.getElementById('wishFont');
+    const wishBackground = document.getElementById('wishBackground');
+    const wishTextColor = document.getElementById('wishTextColor');
+    
     const wishText = wishInput.value.trim();
+    const senderText = wishSender.value.trim() || 'Аноним';
     
     if (wishText) {
-        wishes.push(wishText);
+        const wish = {
+            text: wishText,
+            sender: senderText,
+            font: wishFont.value,
+            background: wishBackground.value,
+            textColor: wishTextColor.value
+        };
+        
+        wishes.push(wish);
         wishInput.value = '';
+        wishSender.value = '';
         updateWishList();
         updatePreview();
     }
@@ -99,7 +169,10 @@ function updateWishList() {
         const wishItem = document.createElement('div');
         wishItem.className = 'wish-item';
         wishItem.innerHTML = `
-            <span>${wish}</span>
+            <div class="wish-item-content">
+                <div class="wish-item-text">${wish.text}</div>
+                <div class="wish-item-details">От: ${wish.sender} | ${wish.font} | ${wish.background} | ${wish.textColor}</div>
+            </div>
             <button onclick="removeWish(${index})">Удалить</button>
         `;
         wishList.appendChild(wishItem);
@@ -146,7 +219,7 @@ function updatePreview() {
     // Обновление содержимого
     previewName.textContent = name.toUpperCase();
     previewSender.textContent = `От: ${sender}`;
-    previewWish.textContent = wishes.length > 0 ? wishes[0] : 'Добавьте пожелания...';
+    previewWish.textContent = wishes.length > 0 ? wishes[0].text : 'Добавьте пожелания...';
 }
 
 // Генерация ссылки
@@ -157,7 +230,6 @@ function generateLink() {
     const font = document.getElementById('fontSelect').value;
     const background = document.getElementById('backgroundSelect').value;
     const textColor = document.getElementById('textColorSelect').value;
-    const music = document.getElementById('musicSelect').value;
     
     if (!name || !date || !sender || wishes.length === 0) {
         alert('Пожалуйста, заполните все поля и добавьте хотя бы одно пожелание!');
@@ -171,7 +243,6 @@ function generateLink() {
         font: font,
         background: background,
         textColor: textColor,
-        music: music,
         wishes: JSON.stringify(wishes)
     });
     
@@ -208,69 +279,21 @@ function checkURLParams() {
         const font = urlParams.get('font') || 'Dancing Script';
         const background = urlParams.get('background') || 'purple-pink';
         const textColor = urlParams.get('textColor') || 'neon-pink';
-        const music = urlParams.get('music') || 'default';
         wishes = JSON.parse(urlParams.get('wishes') || '[]');
         
         // Применение настроек
         document.body.style.fontFamily = font;
         document.getElementById('celebration').className = `page active bg-${background}`;
         
-        // Запуск музыки
-        playMusic(music);
-        
         // Запуск таймера
         startTimer(new Date(date), name, sender, textColor);
     }
-}
-
-// Воспроизведение музыки
-function playMusic(musicKey) {
-    const audio = document.getElementById('birthdayMusic');
-    
-    if (musicKey !== 'default' && musicFiles[musicKey]) {
-        // Попытка загрузить выбранный файл
-        audio.src = musicFiles[musicKey];
-        audio.onerror = function() {
-            // Если файл не найден, используем по умолчанию
-            audio.src = `data:audio/wav;base64,${musicFiles.default}`;
-        };
-    }
-    
-    audio.play().catch(function(error) {
-        console.log('Автовоспроизведение заблокировано:', error);
-        // Показать кнопку для запуска музыки
-        showMusicButton();
-    });
-}
-
-// Показать кнопку запуска музыки
-function showMusicButton() {
-    const button = document.createElement('button');
-    button.textContent = '🎵 Включить музыку';
-    button.style.position = 'fixed';
-    button.style.top = '20px';
-    button.style.right = '20px';
-    button.style.zIndex = '9999';
-    button.style.padding = '10px 20px';
-    button.style.background = '#8b5cf6';
-    button.style.color = 'white';
-    button.style.border = 'none';
-    button.style.borderRadius = '10px';
-    button.style.cursor = 'pointer';
-    
-    button.onclick = function() {
-        document.getElementById('birthdayMusic').play();
-        button.remove();
-    };
-    
-    document.body.appendChild(button);
 }
 
 // Запуск таймера
 function startTimer(targetDate, name, sender, textColor) {
     const timerSection = document.getElementById('timerSection');
     const cakeSection = document.getElementById('cakeSection');
-    const partySection = document.getElementById('partySection');
     
     timerSection.classList.add('active');
     
@@ -294,46 +317,46 @@ function startTimer(targetDate, name, sender, textColor) {
             timerSection.classList.remove('active');
             cakeSection.classList.add('active');
             
-            // Через 10 секунд автоматически задуть свечу если пользователь не сделал это
-            setTimeout(function() {
-                if (cakeSection.classList.contains('active')) {
-                    blowOutCandle();
-                }
-            }, 10000);
+            // Сброс состояния свечей
+            resetCandles();
         }
     }, 1000);
 }
 
-// Задувание свечи
-function blowOutCandle() {
-    const candle = document.getElementById('candle');
+// Сброс состояния свечей
+function resetCandles() {
+    blownCandles = 0;
+    const candles = document.querySelectorAll('.candle');
+    candles.forEach(candle => {
+        candle.classList.add('active');
+        candle.classList.remove('blown-out');
+    });
+}
+
+// Начало празднования
+function startCelebration() {
     const cakeSection = document.getElementById('cakeSection');
     const partySection = document.getElementById('partySection');
     
-    candle.classList.add('blown-out');
-    
     // Запуск эффектов
-    setTimeout(function() {
-        startConfetti();
-        startFireworks();
-        
-        // Переход к празднованию
-        cakeSection.classList.remove('active');
-        partySection.classList.add('active');
-        
-        // Обновление данных празднования
-        updatePartyData();
-        
-        // Запуск ротации пожеланий
-        startWishRotation();
-    }, 1000);
+    startConfetti();
+    startFireworks();
+    
+    // Переход к празднованию
+    cakeSection.classList.remove('active');
+    partySection.classList.add('active');
+    
+    // Обновление данных празднования
+    updatePartyData();
+    
+    // Запуск ротации пожеланий
+    startWishRotation();
 }
 
 // Обновление данных празднования
 function updatePartyData() {
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name');
-    const sender = urlParams.get('sender');
     const textColor = urlParams.get('textColor') || 'neon-pink';
     
     document.getElementById('partyName').textContent = name.toUpperCase();
@@ -352,15 +375,22 @@ function updatePartyData() {
 function startWishRotation() {
     if (wishes.length === 0) return;
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const sender = urlParams.get('sender');
-    
     function showNextWish() {
         const currentWish = document.getElementById('currentWish');
         const wishSender = document.getElementById('wishSender');
+        const wishCard = document.getElementById('wishCard');
         
-        currentWish.textContent = wishes[currentWishIndex];
-        wishSender.textContent = `От: ${sender}`;
+        const wish = wishes[currentWishIndex];
+        
+        // Применение стилей пожелания
+        wishCard.className = `wish-card bg-${wish.background}`;
+        wishCard.style.fontFamily = wish.font;
+        
+        currentWish.textContent = wish.text;
+        currentWish.className = `wish-text ${wish.textColor}`;
+        
+        wishSender.textContent = `От: ${wish.sender}`;
+        wishSender.className = `wish-sender ${wish.textColor}`;
         
         currentWishIndex = (currentWishIndex + 1) % wishes.length;
     }
@@ -412,13 +442,6 @@ function startFireworks() {
         }, i * 500);
     }
 }
-
-// Клик по торту для ручного задувания
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.cake-container') && document.getElementById('cakeSection').classList.contains('active')) {
-        blowOutCandle();
-    }
-});
 
 // Обработка нажатия Enter в поле пожеланий
 document.addEventListener('keypress', function(e) {
