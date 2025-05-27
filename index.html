@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label>Шрифт:</label>
                         <select id="fontSelect">
-                            <option value="Dancing Script">Dancing Script (Танцующий)</option>
+                            <option value="Dancing Script">Dancing Script (Красивый)</option>
                             <option value="Great Vibes">Great Vibes (Элегантный)</option>
                             <option value="Pacifico">Pacifico (Дружелюбный)</option>
                             <option value="Kaushan Script">Kaushan Script (Художественный)</option>
@@ -74,20 +74,43 @@
                     </div>
                     
                     <div class="form-group">
-                        <label>Фоновая музыка:</label>
-                        <select id="musicSelect">
-                            <option value="default">По умолчанию</option>
-                            <option value="madagascar">Мадагаскар - С днём рождения тебя</option>
-                            <option value="allegrova">Ирина Аллегрова - День Рождения</option>
-                            <option value="falling-feathers">Falling Feathers - Happy Birthday</option>
-                            <option value="chorus-friends">Chorus Friends - Happy Birthday</option>
-                            <option value="relaxing">Relaxing Mode - Happy Birthday</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
                         <label>Пожелания:</label>
-                        <textarea id="wishInput" placeholder="Введите пожелание" rows="3"></textarea>
+                        <div class="wish-settings">
+                            <div class="wish-inputs">
+                                <textarea id="wishInput" placeholder="Введите пожелание" rows="3"></textarea>
+                                <input type="text" id="wishSender" placeholder="От кого это пожелание">
+                            </div>
+                            <div class="wish-style-controls">
+                                <select id="wishFont">
+                                    <option value="Dancing Script">Dancing Script</option>
+                                    <option value="Great Vibes">Great Vibes</option>
+                                    <option value="Pacifico">Pacifico</option>
+                                    <option value="Kaushan Script">Kaushan Script</option>
+                                    <option value="Amatic SC">Amatic SC</option>
+                                    <option value="Caveat">Caveat</option>
+                                    <option value="Satisfy">Satisfy</option>
+                                    <option value="Allura">Allura</option>
+                                    <option value="Alex Brush">Alex Brush</option>
+                                </select>
+                                <select id="wishBackground">
+                                    <option value="purple-pink">Фиолетово-розовый</option>
+                                    <option value="blue-red">Синий-красный</option>
+                                    <option value="green-purple">Зелёно-фиолетовый</option>
+                                    <option value="yellow-red">Жёлто-красный</option>
+                                    <option value="gold-dark">Золото-тёмный</option>
+                                </select>
+                                <select id="wishTextColor">
+                                    <option value="neon-pink">Розовый</option>
+                                    <option value="neon-blue">Синий</option>
+                                    <option value="neon-green">Зелёный</option>
+                                    <option value="neon-gold">Золотой</option>
+                                    <option value="neon-purple">Фиолетовый</option>
+                                    <option value="neon-red">Красный</option>
+                                    <option value="neon-cyan">Голубой</option>
+                                    <option value="neon-orange">Оранжевый</option>
+                                </select>
+                            </div>
+                        </div>
                         <button onclick="addWish()">Добавить пожелание</button>
                         <div id="wishList"></div>
                     </div>
@@ -142,16 +165,22 @@
         <!-- Торт и свечи -->
         <div id="cakeSection" class="cake-section">
             <div class="cake-container">
-                <div class="candle" id="candle">🕯️</div>
+                <div class="candles-container">
+                    <div class="candle active" data-candle="1">🕯️</div>
+                    <div class="candle active" data-candle="2">🕯️</div>
+                    <div class="candle active" data-candle="3">🕯️</div>
+                    <div class="candle active" data-candle="4">🕯️</div>
+                    <div class="candle active" data-candle="5">🕯️</div>
+                </div>
                 <div class="cake">🎂</div>
             </div>
-            <p id="cakeMessage">Задуйте свечу!</p>
+            <p id="cakeMessage">Задуйте все свечи! (кликайте по ним или дуйте в микрофон)</p>
         </div>
         
         <!-- Празднование -->
         <div id="partySection" class="party-section">
             <div class="party-content">
-                <h1 class="neon-text party-title">С ПРАЗДНИКОМ ВАС</h1>
+                <h1 class="neon-text party-title">С ПРАЗДНИКОМ ВАС!</h1>
                 <h2 class="neon-text-secondary party-name" id="partyName"></h2>
                 <p class="neon-text-tertiary party-subtitle">СЕГОДНЯ ВАШ ДЕНЬ!</p>
                 
@@ -169,10 +198,14 @@
         <div class="particles"></div>
     </div>
 
-    <!-- Фоновая музыка -->
-    <audio id="birthdayMusic" loop>
+    <!-- Звуки дня рождения -->
+    <audio id="birthdaySound" preload="auto">
         <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAaBDuH0fPTgjMGHm7A7+OZRQ0PVqzn7qlXGAhEnODwx2IhAzmO2O+8cCwFKbfP8NCPPwk" type="audio/wav">
     </audio>
+
+    <script src="hbday.js"></script>
+</body>
+</html>
 
     <script src="hbday.js"></script>
 </body>
