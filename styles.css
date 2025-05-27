@@ -196,6 +196,30 @@ body {
     transform: translateY(-2px);
 }
 
+/* Настройки пожеланий */
+.wish-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.wish-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wish-style-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.wish-style-controls select {
+    padding: 8px;
+    font-size: 14px;
+}
+
 .create-link-btn {
     width: 100%;
     padding: 15px;
@@ -212,11 +236,6 @@ body {
 .create-link-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
-}
-
-.create-link-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
 }
 
 /* Список пожеланий */
@@ -237,10 +256,19 @@ body {
     align-items: center;
 }
 
-.wish-item span {
+.wish-item-content {
     flex: 1;
     margin-right: 10px;
+}
+
+.wish-item-text {
     font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.wish-item-details {
+    font-size: 12px;
+    color: #a855f7;
 }
 
 .wish-item button {
@@ -278,6 +306,7 @@ body {
     justify-content: center;
 }
 
+/* Фоны */
 .bg-purple-pink {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
@@ -387,7 +416,7 @@ body {
     margin-top: 0.5rem;
 }
 
-/* Торт */
+/* Торт и свечи */
 .cake-section {
     display: flex;
     flex-direction: column;
@@ -399,27 +428,41 @@ body {
 
 .cake-container {
     position: relative;
-    font-size: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     animation: cake-bounce 2s infinite;
 }
 
-.cake {
+.candles-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
 .candle {
-    position: absolute;
-    top: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    animation: candle-flicker 1s infinite alternate;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: candle-flicker 2s infinite alternate;
+}
+
+.candle:hover {
+    transform: scale(1.1);
 }
 
 .candle.blown-out {
     opacity: 0.3;
     animation: blow-out 0.5s ease-out;
+    cursor: default;
+}
+
+.cake {
+    font-size: 8rem;
+    position: relative;
+    z-index: 2;
 }
 
 #cakeMessage {
@@ -427,6 +470,7 @@ body {
     font-size: 1.5rem;
     margin-top: 2rem;
     animation: pulse 2s infinite;
+    text-align: center;
 }
 
 @keyframes cake-bounce {
@@ -435,18 +479,18 @@ body {
 }
 
 @keyframes candle-flicker {
-    0% { transform: translateX(-50%) rotate(-2deg); }
-    100% { transform: translateX(-50%) rotate(2deg); }
+    0% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
 }
 
 @keyframes blow-out {
     0% {
         opacity: 1;
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
     100% {
         opacity: 0.3;
-        transform: translateX(-50%) scale(0.8);
+        transform: scale(0.8);
     }
 }
 
@@ -663,6 +707,19 @@ body {
     50% { opacity: 0.7; }
 }
 
+/* Скрытые секции */
+.timer-container,
+.cake-section,
+.party-section {
+    display: none;
+}
+
+.timer-container.active,
+.cake-section.active,
+.party-section.active {
+    display: flex;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
     .editor-layout {
@@ -689,20 +746,20 @@ body {
         font-size: 1.5rem;
     }
     
-    .cake-container {
+    .cake {
         font-size: 6rem;
     }
-}
-
-/* Скрытые секции */
-.timer-container,
-.cake-section,
-.party-section {
-    display: none;
-}
-
-.timer-container.active,
-.cake-section.active,
-.party-section.active {
-    display: flex;
+    
+    .candles-container {
+        gap: 10px;
+    }
+    
+    .candle {
+        font-size: 1.5rem;
+    }
+    
+    .wish-style-controls {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
 }
