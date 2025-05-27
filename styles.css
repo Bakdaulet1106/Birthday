@@ -1,0 +1,708 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Страницы */
+.page {
+    min-height: 100vh;
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Редактор */
+#editor {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Неоновые текстовые цвета */
+.neon-pink {
+    color: #ff006e;
+    text-shadow: 
+        0 0 5px #ff006e,
+        0 0 10px #ff006e,
+        0 0 15px #ff006e,
+        0 0 20px #ff006e;
+}
+
+.neon-blue {
+    color: #00d4ff;
+    text-shadow: 
+        0 0 5px #00d4ff,
+        0 0 10px #00d4ff,
+        0 0 15px #00d4ff,
+        0 0 20px #00d4ff;
+}
+
+.neon-green {
+    color: #39ff14;
+    text-shadow: 
+        0 0 5px #39ff14,
+        0 0 10px #39ff14,
+        0 0 15px #39ff14,
+        0 0 20px #39ff14;
+}
+
+.neon-gold {
+    color: #ffd700;
+    text-shadow: 
+        0 0 5px #ffd700,
+        0 0 10px #ffd700,
+        0 0 15px #ffd700,
+        0 0 20px #ffd700;
+}
+
+.neon-purple {
+    color: #8b5cf6;
+    text-shadow: 
+        0 0 5px #8b5cf6,
+        0 0 10px #8b5cf6,
+        0 0 15px #8b5cf6,
+        0 0 20px #8b5cf6;
+}
+
+.neon-red {
+    color: #ff073a;
+    text-shadow: 
+        0 0 5px #ff073a,
+        0 0 10px #ff073a,
+        0 0 15px #ff073a,
+        0 0 20px #ff073a;
+}
+
+.neon-cyan {
+    color: #00ffff;
+    text-shadow: 
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 15px #00ffff,
+        0 0 20px #00ffff;
+}
+
+.neon-orange {
+    color: #ff8c00;
+    text-shadow: 
+        0 0 5px #ff8c00,
+        0 0 10px #ff8c00,
+        0 0 15px #ff8c00,
+        0 0 20px #ff8c00;
+}
+
+.neon-text {
+    color: #ff006e;
+    text-shadow: 
+        0 0 5px #ff006e,
+        0 0 10px #ff006e,
+        0 0 15px #ff006e,
+        0 0 20px #ff006e;
+    animation: neon-flicker 2s infinite alternate;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+@keyframes neon-flicker {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #ff006e,
+            0 0 10px #ff006e,
+            0 0 15px #ff006e,
+            0 0 20px #ff006e;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #ff006e,
+            0 0 5px #ff006e,
+            0 0 8px #ff006e,
+            0 0 12px #ff006e;
+    }
+}
+
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.editor-form {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #e0e7ff;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #8b5cf6;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.form-group button {
+    margin-top: 0.5rem;
+    padding: 8px 16px;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-group button:hover {
+    background: #7c3aed;
+    transform: translateY(-2px);
+}
+
+.create-link-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.create-link-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.create-link-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Список пожеланий */
+#wishList {
+    margin-top: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.wish-item {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid #8b5cf6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wish-item span {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.wish-item button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Предпросмотр */
+.preview-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.preview-container h3 {
+    color: #e0e7ff;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.preview-card {
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bg-purple-pink {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-blue-red {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.bg-green-purple {
+    background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+}
+
+.bg-yellow-red {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gold-dark {
+    background: linear-gradient(135deg, #2c1810 0%, #8b7355 25%, #d4af37 50%, #8b7355 75%, #1a1a1a 100%);
+}
+
+.neon-preview {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: neon-flicker 2s infinite alternate;
+}
+
+.neon-preview-secondary {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    animation: neon-flicker 2.5s infinite alternate;
+}
+
+.preview-wish {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.preview-sender {
+    color: #a855f7;
+    font-size: 0.9rem;
+}
+
+/* Страница празднования */
+#celebration {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+/* Таймер */
+.timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.timer-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.timer-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+#timerTitle {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.timer-box {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.timer-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fbbf24;
+    text-shadow: 0 0 10px #fbbf24;
+}
+
+.timer-label {
+    color: #a855f7;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Торт */
+.cake-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.cake-container {
+    position: relative;
+    font-size: 8rem;
+    animation: cake-bounce 2s infinite;
+}
+
+.cake {
+    position: relative;
+    z-index: 2;
+}
+
+.candle {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    animation: candle-flicker 1s infinite alternate;
+}
+
+.candle.blown-out {
+    opacity: 0.3;
+    animation: blow-out 0.5s ease-out;
+}
+
+#cakeMessage {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes cake-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes candle-flicker {
+    0% { transform: translateX(-50%) rotate(-2deg); }
+    100% { transform: translateX(-50%) rotate(2deg); }
+}
+
+@keyframes blow-out {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(0.8);
+    }
+}
+
+/* Празднование */
+.party-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.party-content {
+    text-align: center;
+}
+
+.party-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.neon-text-secondary {
+    color: #8b5cf6;
+    text-shadow: 
+        0 0 5px #8b5cf6,
+        0 0 10px #8b5cf6,
+        0 0 15px #8b5cf6,
+        0 0 20px #8b5cf6;
+    animation: neon-flicker-secondary 2.5s infinite alternate;
+}
+
+.neon-text-tertiary {
+    color: #fbbf24;
+    text-shadow: 
+        0 0 5px #fbbf24,
+        0 0 10px #fbbf24,
+        0 0 15px #fbbf24,
+        0 0 20px #fbbf24;
+    animation: neon-flicker-tertiary 3s infinite alternate;
+}
+
+.party-name {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.party-subtitle {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+@keyframes neon-flicker-secondary {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #8b5cf6,
+            0 0 10px #8b5cf6,
+            0 0 15px #8b5cf6,
+            0 0 20px #8b5cf6;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #8b5cf6,
+            0 0 5px #8b5cf6,
+            0 0 8px #8b5cf6,
+            0 0 12px #8b5cf6;
+    }
+}
+
+@keyframes neon-flicker-tertiary {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #fbbf24,
+            0 0 10px #fbbf24,
+            0 0 15px #fbbf24,
+            0 0 20px #fbbf24;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #fbbf24,
+            0 0 5px #fbbf24,
+            0 0 8px #fbbf24,
+            0 0 12px #fbbf24;
+    }
+}
+
+/* Карточка пожеланий */
+.wish-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    animation: wish-slide-in 1s ease-out;
+}
+
+.gift-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.wish-text {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.wish-sender {
+    color: #a855f7;
+    font-style: italic;
+}
+
+@keyframes wish-slide-in {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Конфетти */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall 3s infinite linear;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Фейерверки */
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.firework {
+    position: absolute;
+    border-radius: 50%;
+    animation: firework-explode 2s infinite;
+}
+
+@keyframes firework-explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Частицы */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 60% 30%, rgba(139, 92, 246, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 70%, rgba(251, 191, 36, 0.3) 2px, transparent 2px);
+    background-size: 100px 100px;
+    animation: particles-float 20s infinite linear;
+}
+
+@keyframes particles-float {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+/* Общие анимации */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .editor-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .neon-text {
+        font-size: 2rem;
+    }
+    
+    .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .party-title {
+        font-size: 2.5rem;
+    }
+    
+    .party-name {
+        font-size: 2rem;
+    }
+    
+    .party-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .cake-container {
+        font-size: 6rem;
+    }
+}
+
+/* Скрытые секции */
+.timer-container,
+.cake-section,
+.party-section {
+    display: none;
+}
+
+.timer-container.active,
+.cake-section.active,
+.party-section.active {
+    display: flex;
+}

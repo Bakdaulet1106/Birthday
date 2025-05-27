@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 День Рождения - Создай Интерактивную Открытку</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;700&family=Satisfy&family=Allura&family=Alex+Brush&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Редактор открыток -->
+    <div id="editor" class="page active">
+        <div class="container">
+            <h1 class="neon-text">🎂 Редактор Открыток День Рождения</h1>
+            
+            <div class="editor-layout">
+                <!-- Форма редактора -->
+                <div class="editor-form">
+                    <div class="form-group">
+                        <label>Имя именинника:</label>
+                        <input type="text" id="birthdayName" placeholder="Введите имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Дата дня рождения:</label>
+                        <input type="datetime-local" id="birthdayDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>От кого:</label>
+                        <input type="text" id="senderName" placeholder="Ваше имя">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Шрифт:</label>
+                        <select id="fontSelect">
+                            <option value="Dancing Script">Dancing Script (Танцующий)</option>
+                            <option value="Great Vibes">Great Vibes (Элегантный)</option>
+                            <option value="Pacifico">Pacifico (Дружелюбный)</option>
+                            <option value="Kaushan Script">Kaushan Script (Художественный)</option>
+                            <option value="Amatic SC">Amatic SC (Рукописный)</option>
+                            <option value="Caveat">Caveat (Современный)</option>
+                            <option value="Satisfy">Satisfy (Утончённый)</option>
+                            <option value="Allura">Allura (Роскошный)</option>
+                            <option value="Alex Brush">Alex Brush (Кисть)</option>
+                            <option value="serif">Serif (Классический)</option>
+                            <option value="sans-serif">Sans-serif (Простой)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Фон:</label>
+                        <select id="backgroundSelect">
+                            <option value="purple-pink">Фиолетово-розовый</option>
+                            <option value="blue-red">Синий-красный</option>
+                            <option value="green-purple">Зелёно-фиолетовый</option>
+                            <option value="yellow-red">Жёлто-красный</option>
+                            <option value="gold-dark">Золото-тёмный</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Цвет текста:</label>
+                        <select id="textColorSelect">
+                            <option value="neon-pink">Неоновый розовый</option>
+                            <option value="neon-blue">Неоновый синий</option>
+                            <option value="neon-green">Неоновый зелёный</option>
+                            <option value="neon-gold">Неоновый золотой</option>
+                            <option value="neon-purple">Неоновый фиолетовый</option>
+                            <option value="neon-red">Неоновый красный</option>
+                            <option value="neon-cyan">Неоновый голубой</option>
+                            <option value="neon-orange">Неоновый оранжевый</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Фоновая музыка:</label>
+                        <select id="musicSelect">
+                            <option value="default">По умолчанию</option>
+                            <option value="madagascar">Мадагаскар - С днём рождения тебя</option>
+                            <option value="allegrova">Ирина Аллегрова - День Рождения</option>
+                            <option value="falling-feathers">Falling Feathers - Happy Birthday</option>
+                            <option value="chorus-friends">Chorus Friends - Happy Birthday</option>
+                            <option value="relaxing">Relaxing Mode - Happy Birthday</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Пожелания:</label>
+                        <textarea id="wishInput" placeholder="Введите пожелание" rows="3"></textarea>
+                        <button onclick="addWish()">Добавить пожелание</button>
+                        <div id="wishList"></div>
+                    </div>
+                    
+                    <button class="create-link-btn" onclick="generateLink()">
+                        ✨ Создать ссылку на открытку
+                    </button>
+                </div>
+                
+                <!-- Предпросмотр -->
+                <div class="preview-container">
+                    <h3>Предпросмотр:</h3>
+                    <div id="preview" class="preview-card bg-purple-pink">
+                        <h1 class="neon-preview neon-pink">С ДНЁМ РОЖДЕНИЯ!</h1>
+                        <h2 class="neon-preview-secondary neon-blue" id="previewName"></h2>
+                        <p class="preview-wish" id="previewWish"></p>
+                        <p class="preview-sender" id="previewSender"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница празднования -->
+    <div id="celebration" class="page">
+        <!-- Таймер -->
+        <div id="timerSection" class="timer-container">
+            <div class="timer-card">
+                <div class="timer-icon">⏰</div>
+                <h1 id="timerTitle">До дня рождения</h1>
+                <div class="timer-grid">
+                    <div class="timer-box">
+                        <div class="timer-number" id="days">0</div>
+                        <div class="timer-label">Дней</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="hours">0</div>
+                        <div class="timer-label">Часов</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="minutes">0</div>
+                        <div class="timer-label">Минут</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="seconds">0</div>
+                        <div class="timer-label">Секунд</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Торт и свечи -->
+        <div id="cakeSection" class="cake-section">
+            <div class="cake-container">
+                <div class="candle" id="candle">🕯️</div>
+                <div class="cake">🎂</div>
+            </div>
+            <p id="cakeMessage">Задуйте свечу!</p>
+        </div>
+        
+        <!-- Празднование -->
+        <div id="partySection" class="party-section">
+            <div class="party-content">
+                <h1 class="neon-text party-title">С ПРАЗДНИКОМ ВАС</h1>
+                <h2 class="neon-text-secondary party-name" id="partyName"></h2>
+                <p class="neon-text-tertiary party-subtitle">СЕГОДНЯ ВАШ ДЕНЬ!</p>
+                
+                <div class="wish-card" id="wishCard">
+                    <div class="gift-icon">🎁</div>
+                    <p class="wish-text" id="currentWish"></p>
+                    <p class="wish-sender" id="wishSender"></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Эффекты -->
+        <div id="confetti" class="confetti-container"></div>
+        <div id="fireworks" class="fireworks-container"></div>
+        <div class="particles"></div>
+    </div>
+
+    <!-- Фоновая музыка -->
+    <audio id="birthdayMusic" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmAaBDuH0fPTgjMGHm7A7+OZRQ0PVqzn7qlXGAhEnODwx2IhAzmO2O+8cCwFKbfP8NCPPwk" type="audio/wav">
+    </audio>
+
+    <script src="hbday.js"></script>
+</body>
+</html>
