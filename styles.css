@@ -558,7 +558,7 @@ body {
     font-size: 2.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
-     animation: candle-flicker 1.5s infinite alternate;
+    animation: candle-flicker 1.5s infinite alternate;
     filter: drop-shadow(0 0 10px #ffd700);
 }
 
@@ -959,3 +959,4 @@ body {
         font-size: 1.1rem;
     }
 }
+
