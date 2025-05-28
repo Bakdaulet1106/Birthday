@@ -447,39 +447,6 @@ function checkURLParams() {
     }
 }
 
-// Механикалық сағат тілшелерін жаңарту
-function updateClockHands(targetDate) {
-    const now = new Date();
-    const distance = targetDate - now;
-    
-    if (distance > 0) {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        // Сағат тілшелерін жаңарту
-        const hourHand = document.getElementById('hourHand');
-        const minuteHand = document.getElementById('minuteHand');
-        const secondHand = document.getElementById('secondHand');
-        
-        if (hourHand && minuteHand && secondHand) {
-            // Тілшелердің айналу бұрыштарын есептеу
-            const hourAngle = (hours % 12) * 30 + (minutes * 0.5);
-            const minuteAngle = minutes * 6 + (seconds * 0.1);
-            const secondAngle = seconds * 6;
-            
-            hourHand.style.transform = `rotate(${hourAngle}deg)`;
-            minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
-            secondHand.style.transform = `rotate(${secondAngle}deg)`;
-        }
-        
-        return { days, hours, minutes, seconds };
-    }
-    
-    return null;
-}
-
 // Таймерді іске қосу
 function startTimer(targetDate, name, sender, textColor) {
     const timerSection = document.getElementById('timerSection');
@@ -488,14 +455,20 @@ function startTimer(targetDate, name, sender, textColor) {
     timerSection.classList.add('active');
     
     const timer = setInterval(function() {
-        const timeLeft = updateClockHands(targetDate);
+        const now = new Date();
+        const distance = targetDate - now;
         
-        if (timeLeft) {
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
             // Сандық дисплейді жаңарту
-            document.getElementById('days').textContent = timeLeft.days;
-            document.getElementById('hours').textContent = timeLeft.hours;
-            document.getElementById('minutes').textContent = timeLeft.minutes;
-            document.getElementById('seconds').textContent = timeLeft.seconds;
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         } else {
             clearInterval(timer);
             // Тортқа көшу
@@ -705,4 +678,5 @@ window.addEventListener('error', function(e) {
 });
 
 console.log('Туған күн скрипті жүктелді');
+
 
