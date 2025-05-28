@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,19 +6,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
     overflow-x: hidden;
-}
-
-.page {
-    display: none;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.page.active {
-    display: block;
 }
 
 .container {
@@ -28,44 +15,125 @@ body {
     padding: 20px;
 }
 
-/* Неоновые эффекты */
+/* Страницы */
+.page {
+    min-height: 100vh;
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Редактор */
+#editor {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Неоновые текстовые цвета */
+.neon-pink {
+    color: #ff006e;
+    text-shadow: 
+        0 0 5px #ff006e,
+        0 0 10px #ff006e,
+        0 0 15px #ff006e,
+        0 0 20px #ff006e;
+}
+
+.neon-blue {
+    color: #00d4ff;
+    text-shadow: 
+        0 0 5px #00d4ff,
+        0 0 10px #00d4ff,
+        0 0 15px #00d4ff,
+        0 0 20px #00d4ff;
+}
+
+.neon-green {
+    color: #39ff14;
+    text-shadow: 
+        0 0 5px #39ff14,
+        0 0 10px #39ff14,
+        0 0 15px #39ff14,
+        0 0 20px #39ff14;
+}
+
+.neon-gold {
+    color: #ffd700;
+    text-shadow: 
+        0 0 5px #ffd700,
+        0 0 10px #ffd700,
+        0 0 15px #ffd700,
+        0 0 20px #ffd700;
+}
+
+.neon-purple {
+    color: #8b5cf6;
+    text-shadow: 
+        0 0 5px #8b5cf6,
+        0 0 10px #8b5cf6,
+        0 0 15px #8b5cf6,
+        0 0 20px #8b5cf6;
+}
+
+.neon-red {
+    color: #ff073a;
+    text-shadow: 
+        0 0 5px #ff073a,
+        0 0 10px #ff073a,
+        0 0 15px #ff073a,
+        0 0 20px #ff073a;
+}
+
+.neon-cyan {
+    color: #00ffff;
+    text-shadow: 
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 15px #00ffff,
+        0 0 20px #00ffff;
+}
+
+.neon-orange {
+    color: #ff8c00;
+    text-shadow: 
+        0 0 5px #ff8c00,
+        0 0 10px #ff8c00,
+        0 0 15px #ff8c00,
+        0 0 20px #ff8c00;
+}
+
 .neon-text {
     color: #ff006e;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
     text-shadow: 
         0 0 5px #ff006e,
         0 0 10px #ff006e,
         0 0 15px #ff006e,
         0 0 20px #ff006e;
     animation: neon-flicker 2s infinite alternate;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
 @keyframes neon-flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #ff006e,
+            0 0 10px #ff006e,
+            0 0 15px #ff006e,
+            0 0 20px #ff006e;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #ff006e,
+            0 0 5px #ff006e,
+            0 0 8px #ff006e,
+            0 0 12px #ff006e;
+    }
 }
 
-/* Цвета неонового текста */
-.neon-pink { color: #ff006e; text-shadow: 0 0 10px #ff006e, 0 0 20px #ff006e; }
-.neon-blue { color: #0066ff; text-shadow: 0 0 10px #0066ff, 0 0 20px #0066ff; }
-.neon-green { color: #00ff66; text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66; }
-.neon-gold { color: #ffd700; text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
-.neon-purple { color: #8b5cf6; text-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6; }
-.neon-red { color: #ff073a; text-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a; }
-.neon-cyan { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
-.neon-orange { color: #ff8c00; text-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00; }
-
-/* Фоновые градиенты */
-.bg-purple-pink { background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); }
-.bg-blue-red { background: linear-gradient(45deg, #667eea 0%, #f093fb 100%); }
-.bg-green-purple { background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%); }
-.bg-yellow-red { background: linear-gradient(45deg, #ffecd2 0%, #fcb69f 100%); }
-.bg-gold-dark { background: linear-gradient(45deg, #ffd89b 0%, #19547b 100%); }
-
-/* Редактор */
 .editor-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -74,11 +142,11 @@ body {
 }
 
 .editor-form {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
     padding: 2rem;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .form-group {
@@ -87,67 +155,102 @@ body {
 
 .form-group label {
     display: block;
-    color: white;
-    font-weight: bold;
     margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #e0e7ff;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: none;
+    padding: 12px;
+    border: 2px solid #8b5cf6;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
+.form-group button {
+    margin-top: 0.5rem;
+    padding: 8px 16px;
+    background: #8b5cf6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-group button:hover {
+    background: #7c3aed;
+    transform: translateY(-2px);
+}
+
+/* Настройки пожеланий */
 .wish-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.wish-inputs {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.wish-controls {
+.wish-style-controls {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
 }
 
-button {
-    background: linear-gradient(45deg, #ff006e, #8b5cf6);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4);
+.wish-style-controls select {
+    padding: 8px;
+    font-size: 14px;
 }
 
 .create-link-btn {
     width: 100%;
-    font-size: 1.1rem;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.create-link-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Список пожеланий */
+#wishList {
     margin-top: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .wish-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid #8b5cf6;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -155,317 +258,367 @@ button:hover {
 
 .wish-item-content {
     flex: 1;
+    margin-right: 10px;
 }
 
 .wish-item-text {
-    color: white;
-    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 .wish-item-details {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
+    font-size: 12px;
+    color: #a855f7;
+}
+
+.wish-item button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 /* Предпросмотр */
 .preview-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
     padding: 2rem;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .preview-container h3 {
-    color: white;
-    text-align: center;
+    color: #e0e7ff;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .preview-card {
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    min-height: 400px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+/* Фоны */
+.bg-purple-pink {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-blue-red {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.bg-green-purple {
+    background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+}
+
+.bg-yellow-red {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gold-dark {
+    background: linear-gradient(135deg, #2c1810 0%, #8b7355 25%, #d4af37 50%, #8b7355 75%, #1a1a1a 100%);
+}
+
 .neon-preview {
     font-size: 2rem;
-    font-weight: bold;
     margin-bottom: 1rem;
+    animation: neon-flicker 2s infinite alternate;
 }
 
 .neon-preview-secondary {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.preview-wishes {
-    margin: 1.5rem 0;
-}
-
-.preview-wish-item {
     margin-bottom: 1rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    animation: neon-flicker 2.5s infinite alternate;
 }
 
-.preview-wish-text {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.preview-wish-sender {
-    font-style: italic;
-    opacity: 0.8;
-}
-
-.preview-main-sender {
+.preview-wish {
     color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
     font-style: italic;
-    margin-top: 1rem;
+}
+
+.preview-sender {
+    color: #a855f7;
+    font-size: 0.9rem;
 }
 
 /* Страница празднования */
 #celebration {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     position: relative;
-    overflow: hidden;
 }
 
 /* Таймер */
 .timer-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    text-align: center;
     padding: 2rem;
 }
 
-.timer-title {
+.timer-card {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.timer-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+#timerTitle {
     color: white;
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: pulse 2s infinite;
 }
 
-.timer-display {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
-.time-unit {
-    background: rgba(255, 255, 255, 0.1);
+.timer-box {
+    background: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    min-width: 100px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
 }
 
-.time-number {
+.timer-number {
     font-size: 3rem;
     font-weight: bold;
-    color: #ff006e;
-    text-shadow: 0 0 10px #ff006e;
+    color: #fbbf24;
+    text-shadow: 0 0 10px #fbbf24;
 }
 
-.time-label {
-    color: white;
+.timer-label {
+    color: #a855f7;
     font-size: 1rem;
     margin-top: 0.5rem;
-}
-
-.time-separator {
-    font-size: 3rem;
-    color: white;
-    font-weight: bold;
-}
-
-.birthday-emoji {
-    font-size: 4rem;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-10px); }
 }
 
 /* Торт и свечи */
 .cake-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    text-align: center;
     padding: 2rem;
 }
 
 .cake-container {
     position: relative;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: cake-bounce 2s infinite;
 }
 
 .candles-container {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 3;
 }
 
 .candle {
+    font-size: 2rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
+    animation: candle-flicker 2s infinite alternate;
 }
 
 .candle:hover {
     transform: scale(1.1);
 }
 
-.candle-body {
-    width: 15px;
-    height: 60px;
-    background: linear-gradient(to bottom, #ffd700, #ffed4a);
-    border-radius: 3px;
-    position: relative;
-}
-
-.flame {
-    width: 12px;
-    height: 15px;
-    background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ffd700 100%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: flicker 1s infinite alternate;
-}
-
-@keyframes flicker {
-    0% { transform: translateX(-50%) rotate(-2deg) scale(1); }
-    100% { transform: translateX(-50%) rotate(2deg) scale(1.05); }
-}
-
-.candle.blown-out .flame {
-    display: none;
-}
-
-.candle.blown-out .candle-body {
-    opacity: 0.5;
+.candle.blown-out {
+    opacity: 0.3;
+    animation: blow-out 0.5s ease-out;
+    cursor: default;
 }
 
 .cake {
     font-size: 8rem;
-    animation: gentle-bounce 3s infinite ease-in-out;
+    position: relative;
+    z-index: 2;
 }
 
-@keyframes gentle-bounce {
+#cakeMessage {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    animation: pulse 2s infinite;
+    text-align: center;
+}
+
+@keyframes cake-bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
 
-.cake-message {
-    color: white;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+@keyframes candle-flicker {
+    0% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
+}
+
+@keyframes blow-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
 }
 
 /* Празднование */
 .party-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
-    text-align: center;
     padding: 2rem;
 }
 
 .party-content {
-    max-width: 600px;
+    text-align: center;
 }
 
 .party-title {
-    font-size: 3rem;
-    color: #ff006e;
-    text-shadow: 0 0 20px #ff006e;
+    font-size: 4rem;
     margin-bottom: 1rem;
-    animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+.neon-text-secondary {
+    color: #8b5cf6;
+    text-shadow: 
+        0 0 5px #8b5cf6,
+        0 0 10px #8b5cf6,
+        0 0 15px #8b5cf6,
+        0 0 20px #8b5cf6;
+    animation: neon-flicker-secondary 2.5s infinite alternate;
+}
+
+.neon-text-tertiary {
+    color: #fbbf24;
+    text-shadow: 
+        0 0 5px #fbbf24,
+        0 0 10px #fbbf24,
+        0 0 15px #fbbf24,
+        0 0 20px #fbbf24;
+    animation: neon-flicker-tertiary 3s infinite alternate;
 }
 
 .party-name {
-    font-size: 2.5rem;
-    color: #8b5cf6;
-    text-shadow: 0 0 15px #8b5cf6;
+    font-size: 3rem;
     margin-bottom: 1rem;
 }
 
 .party-subtitle {
-    font-size: 1.5rem;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-bottom: 3rem;
 }
 
+@keyframes neon-flicker-secondary {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #8b5cf6,
+            0 0 10px #8b5cf6,
+            0 0 15px #8b5cf6,
+            0 0 20px #8b5cf6;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #8b5cf6,
+            0 0 5px #8b5cf6,
+            0 0 8px #8b5cf6,
+            0 0 12px #8b5cf6;
+    }
+}
+
+@keyframes neon-flicker-tertiary {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px #fbbf24,
+            0 0 10px #fbbf24,
+            0 0 15px #fbbf24,
+            0 0 20px #fbbf24;
+    }
+    50% {
+        text-shadow: 
+            0 0 2px #fbbf24,
+            0 0 5px #fbbf24,
+            0 0 8px #fbbf24,
+            0 0 12px #fbbf24;
+    }
+}
+
+/* Карточка пожеланий */
 .wish-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
-    border-radius: 20px;
+    border-radius: 15px;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 2rem;
-    animation: fade-in 1s ease-in;
-}
-
-@keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    animation: wish-slide-in 1s ease-out;
 }
 
 .gift-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    animation: rotate 4s infinite linear;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 .wish-text {
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
 .wish-sender {
-    color: rgba(255, 255, 255, 0.8);
+    color: #a855f7;
     font-style: italic;
-    font-size: 1.1rem;
 }
 
-/* Эффекты */
+@keyframes wish-slide-in {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Конфетти */
 .confetti-container {
     position: fixed;
     top: 0;
@@ -480,8 +633,7 @@ button:hover {
     position: absolute;
     width: 10px;
     height: 10px;
-    border-radius: 2px;
-    animation: confetti-fall 4s linear infinite;
+    animation: confetti-fall 3s infinite linear;
 }
 
 @keyframes confetti-fall {
@@ -490,11 +642,12 @@ button:hover {
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(720deg);
         opacity: 0;
     }
 }
 
+/* Фейерверки */
 .fireworks-container {
     position: fixed;
     top: 0;
@@ -508,7 +661,7 @@ button:hover {
 .firework {
     position: absolute;
     border-radius: 50%;
-    animation: firework-explode 2s ease-out forwards;
+    animation: firework-explode 2s infinite;
 }
 
 @keyframes firework-explode {
@@ -516,14 +669,55 @@ button:hover {
         transform: scale(0);
         opacity: 1;
     }
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
     100% {
-        transform: scale(1.5);
+        transform: scale(2);
         opacity: 0;
     }
+}
+
+/* Частицы */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 60% 30%, rgba(139, 92, 246, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 70%, rgba(251, 191, 36, 0.3) 2px, transparent 2px);
+    background-size: 100px 100px;
+    animation: particles-float 20s infinite linear;
+}
+
+@keyframes particles-float {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+/* Общие анимации */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Скрытые секции */
+.timer-container,
+.cake-section,
+.party-section {
+    display: none;
+}
+
+.timer-container.active,
+.cake-section.active,
+.party-section.active {
+    display: flex;
 }
 
 /* Адаптивность */
@@ -536,70 +730,38 @@ button:hover {
         font-size: 2rem;
     }
     
-    .timer-display {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    
-    .time-unit {
-        min-width: 80px;
-        padding: 1rem;
-    }
-    
-    .time-number {
-        font-size: 2rem;
-    }
-    
-    .time-separator {
-        display: none;
+    .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .party-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .party-name {
-        font-size: 1.8rem;
+        font-size: 2rem;
+    }
+    
+    .party-subtitle {
+        font-size: 1.5rem;
     }
     
     .cake {
         font-size: 6rem;
     }
     
-    .wish-controls {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .editor-form,
-    .preview-container {
-        padding: 1rem;
-    }
-    
-    .timer-title {
-        font-size: 1.8rem;
-    }
-    
-    .time-number {
-        font-size: 1.5rem;
-    }
-    
-    .cake {
-        font-size: 4rem;
-    }
-    
     .candles-container {
         gap: 10px;
     }
     
-    .candle-body {
-        width: 10px;
-        height: 40px;
+    .candle {
+        font-size: 1.5rem;
+    }
+    
+    .wish-style-controls {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
     }
 }
+
 
