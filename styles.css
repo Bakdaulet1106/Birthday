@@ -7,6 +7,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .container {
@@ -300,10 +301,45 @@ body {
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
-    min-height: 300px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
+}
+
+.preview-wishes {
+    margin: 1rem 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.preview-wish-item {
+    margin-bottom: 1rem;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.preview-wish-text {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.preview-wish-sender {
+    color: #a855f7;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.preview-main-sender {
+    color: #a855f7;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
 /* Фоны */
@@ -339,25 +375,14 @@ body {
     animation: neon-flicker 2.5s infinite alternate;
 }
 
-.preview-wish {
-    color: white;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    font-style: italic;
-}
-
-.preview-sender {
-    color: #a855f7;
-    font-size: 0.9rem;
-}
-
 /* Страница празднования */
 #celebration {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     position: relative;
+    overflow: hidden;
 }
 
-/* Таймер */
+/* Механические часы */
 .timer-container {
     display: flex;
     align-items: center;
@@ -366,54 +391,139 @@ body {
     padding: 2rem;
 }
 
-.timer-card {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 3rem;
-    border-radius: 20px;
-    border: 2px solid #8b5cf6;
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+.mechanical-clock {
     text-align: center;
-    backdrop-filter: blur(10px);
 }
 
-.timer-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+.clock-face {
+    width: 300px;
+    height: 300px;
+    border: 15px solid #8b5cf6;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto 2rem;
+    background: 
+        radial-gradient(circle at 30% 30%, #ffffff, #f0f0f0),
+        linear-gradient(45deg, #e0e0e0, #d0d0d0);
+    box-shadow: 
+        0 0 50px rgba(139, 92, 246, 0.8),
+        inset 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
-#timerTitle {
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #333;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.clock-hand {
+    position: absolute;
+    background: #333;
+    transform-origin: bottom center;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.hour-hand {
+    width: 6px;
+    height: 70px;
+    top: 80px;
+    left: 50%;
+    margin-left: -3px;
+    z-index: 3;
+}
+
+.minute-hand {
+    width: 4px;
+    height: 100px;
+    top: 50px;
+    left: 50%;
+    margin-left: -2px;
+    z-index: 2;
+    background: #666;
+}
+
+.second-hand {
+    width: 2px;
+    height: 120px;
+    top: 30px;
+    left: 50%;
+    margin-left: -1px;
+    background: #ff073a;
+    z-index: 1;
+    animation: tick 1s infinite steps(60);
+}
+
+.clock-numbers {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.number {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(calc(var(--i) * 30deg));
+}
+
+.number span {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    transform: rotate(calc(var(--i) * -30deg));
+    margin-top: 10px;
+}
+
+.clock-title {
     color: white;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
+    text-shadow: 0 0 20px #8b5cf6;
     animation: pulse 2s infinite;
 }
 
-.timer-grid {
+.digital-display {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.timer-box {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1.5rem;
-    border-radius: 15px;
+.time-unit {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
     border: 2px solid #8b5cf6;
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
-.timer-number {
-    font-size: 3rem;
+.time-number {
+    font-size: 2rem;
     font-weight: bold;
     color: #fbbf24;
     text-shadow: 0 0 10px #fbbf24;
 }
 
-.timer-label {
+.time-label {
     color: #a855f7;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
+}
+
+@keyframes tick {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(6deg); }
 }
 
 /* Торт и свечи */
@@ -424,6 +534,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 2rem;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 .cake-container {
@@ -443,26 +554,30 @@ body {
 }
 
 .candle {
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    animation: candle-flicker 2s infinite alternate;
+    animation: candle-flicker 1.5s infinite alternate;
+    filter: drop-shadow(0 0 10px #ffd700);
 }
 
 .candle:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px #ffd700);
 }
 
 .candle.blown-out {
-    opacity: 0.3;
-    animation: blow-out 0.5s ease-out;
+    opacity: 0.2;
+    animation: blow-out 0.8s ease-out;
     cursor: default;
+    filter: grayscale(100%);
 }
 
 .cake {
     font-size: 8rem;
     position: relative;
     z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
 }
 
 #cakeMessage {
@@ -471,6 +586,7 @@ body {
     margin-top: 2rem;
     animation: pulse 2s infinite;
     text-align: center;
+    text-shadow: 0 0 10px #8b5cf6;
 }
 
 @keyframes cake-bounce {
@@ -479,18 +595,23 @@ body {
 }
 
 @keyframes candle-flicker {
-    0% { transform: rotate(-2deg); }
-    100% { transform: rotate(2deg); }
+    0% { transform: rotate(-2deg) scale(1); }
+    100% { transform: rotate(2deg) scale(1.05); }
 }
 
 @keyframes blow-out {
     0% {
         opacity: 1;
         transform: scale(1);
+        filter: drop-shadow(0 0 10px #ffd700);
+    }
+    50% {
+        transform: scale(1.2);
     }
     100% {
-        opacity: 0.3;
+        opacity: 0.2;
         transform: scale(0.8);
+        filter: grayscale(100%);
     }
 }
 
@@ -502,6 +623,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 2rem;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 .party-content {
@@ -597,23 +719,26 @@ body {
 
 .wish-text {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     line-height: 1.6;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .wish-sender {
     color: #a855f7;
     font-style: italic;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px #a855f7;
 }
 
 @keyframes wish-slide-in {
     0% {
-        transform: translateY(50px);
+        transform: translateY(50px) scale(0.9);
         opacity: 0;
     }
     100% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
     }
 }
@@ -670,7 +795,7 @@ body {
         opacity: 1;
     }
     100% {
-        transform: scale(2);
+        transform: scale(3);
         opacity: 0;
     }
 }
@@ -730,7 +855,12 @@ body {
         font-size: 2rem;
     }
     
-    .timer-grid {
+    .clock-face {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .digital-display {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -755,13 +885,79 @@ body {
     }
     
     .candle {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     .wish-style-controls {
         grid-template-columns: 1fr;
         gap: 0.3rem;
     }
+    
+    .preview-card {
+        min-height: 350px;
+        padding: 1.5rem;
+    }
+    
+    .neon-preview {
+        font-size: 1.5rem;
+    }
+    
+    .neon-preview-secondary {
+        font-size: 1.2rem;
+    }
 }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .editor-form,
+    .preview-container {
+        padding: 1rem;
+    }
+    
+    .neon-text {
+        font-size: 1.5rem;
+    }
+    
+    .clock-face {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .time-number {
+        font-size: 1.5rem;
+    }
+    
+    .party-title {
+        font-size: 2rem;
+    }
+    
+    .party-name {
+        font-size: 1.5rem;
+    }
+    
+    .party-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .cake {
+        font-size: 4rem;
+    }
+    
+    .candle {
+        font-size: 1.5rem;
+    }
+    
+    .wish-card {
+        padding: 1.5rem;
+    }
+    
+    .wish-text {
+        font-size: 1.1rem;
+    }
+}
+
 
 
