@@ -1,82 +1,85 @@
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🎂 День Рождения</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Туған күн - Интерактивті ашық хат жасау</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;700&family=Satisfy&family=Allura&family=Alex+Brush&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Ашық хат редакторы -->
     <div id="editor" class="page active">
         <div class="container">
-            <h1 class="neon-text">🎂 Редактор Открыток</h1>
+            <h1 class="neon-text">🎂 Туған күн ашық хат редакторы</h1>
             
             <div class="editor-layout">
+                <!-- Редактор формасы -->
                 <div class="editor-form">
                     <div class="form-group">
-                        <label>Имя именинника:</label>
-                        <input type="text" id="birthdayName" placeholder="Введите имя">
+                        <label>Туған күнін тойлаушының аты:</label>
+                        <input type="text" id="birthdayName" placeholder="Атын енгізіңіз">
                     </div>
                     
                     <div class="form-group">
-                        <label>Дата дня рождения:</label>
+                        <label>Туған күн мерзімі:</label>
                         <input type="datetime-local" id="birthdayDate">
                     </div>
                     
                     <div class="form-group">
-                        <label>От кого:</label>
-                        <input type="text" id="senderName" placeholder="Ваше имя">
+                        <label>Кімнен:</label>
+                        <input type="text" id="senderName" placeholder="Сіздің атыңыз">
                     </div>
                     
                     <div class="form-group">
-                        <label>Шрифт:</label>
+                        <label>Қаріп:</label>
                         <select id="fontSelect">
-                            <option value="Dancing Script">Dancing Script</option>
-                            <option value="Great Vibes">Great Vibes</option>
-                            <option value="Pacifico">Pacifico</option>
-                            <option value="Kaushan Script">Kaushan Script</option>
-                            <option value="Amatic SC">Amatic SC</option>
-                            <option value="Caveat">Caveat</option>
-                            <option value="Satisfy">Satisfy</option>
-                            <option value="Allura">Allura</option>
-                            <option value="Alex Brush">Alex Brush</option>
-                            <option value="serif">Serif</option>
-                            <option value="sans-serif">Sans-serif</option>
+                            <option value="Dancing Script">Dancing Script (Әдемі)</option>
+                            <option value="Great Vibes">Great Vibes (Сәнді)</option>
+                            <option value="Pacifico">Pacifico (Достық)</option>
+                            <option value="Kaushan Script">Kaushan Script (Өнерлі)</option>
+                            <option value="Amatic SC">Amatic SC (Қолжазба)</option>
+                            <option value="Caveat">Caveat (Заманауи)</option>
+                            <option value="Satisfy">Satisfy (Нәзік)</option>
+                            <option value="Allura">Allura (Сән-салтанатты)</option>
+                            <option value="Alex Brush">Alex Brush (Кисті)</option>
+                            <option value="serif">Serif (Классикалық)</option>
+                            <option value="sans-serif">Sans-serif (Қарапайым)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Фон:</label>
                         <select id="backgroundSelect">
-                            <option value="purple-pink">Фиолетово-розовый</option>
-                            <option value="blue-red">Синий-красный</option>
-                            <option value="green-purple">Зелёно-фиолетовый</option>
-                            <option value="yellow-red">Жёлто-красный</option>
-                            <option value="gold-dark">Золото-тёмный</option>
+                            <option value="purple-pink">Күлгін-қызғылт</option>
+                            <option value="blue-red">Көк-қызыл</option>
+                            <option value="green-purple">Жасыл-күлгін</option>
+                            <option value="yellow-red">Сары-қызыл</option>
+                            <option value="gold-dark">Алтын-қою</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label>Цвет текста:</label>
+                        <label>Мәтін түсі:</label>
                         <select id="textColorSelect">
-                            <option value="neon-pink">Неоновый розовый</option>
-                            <option value="neon-blue">Неоновый синий</option>
-                            <option value="neon-green">Неоновый зелёный</option>
-                            <option value="neon-gold">Неоновый золотой</option>
-                            <option value="neon-purple">Неоновый фиолетовый</option>
-                            <option value="neon-red">Неоновый красный</option>
-                            <option value="neon-cyan">Неоновый голубой</option>
-                            <option value="neon-orange">Неоновый оранжевый</option>
+                            <option value="neon-pink">Неон қызғылт</option>
+                            <option value="neon-blue">Неон көк</option>
+                            <option value="neon-green">Неон жасыл</option>
+                            <option value="neon-gold">Неон алтын</option>
+                            <option value="neon-purple">Неон күлгін</option>
+                            <option value="neon-red">Неон қызыл</option>
+                            <option value="neon-cyan">Неон көгілдір</option>
+                            <option value="neon-orange">Неон сарғыш</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label>Пожелания:</label>
+                        <label>Тілектер:</label>
                         <div class="wish-settings">
                             <div class="wish-inputs">
-                                <textarea id="wishInput" placeholder="Введите пожелание" rows="3"></textarea>
-                                <input type="text" id="wishSender" placeholder="От кого это пожелание">
+                                <textarea id="wishInput" placeholder="Тілек енгізіңіз" rows="3"></textarea>
+                                <input type="text" id="wishSender" placeholder="Бұл тілекті кім айтып жатыр">
                             </div>
                             <div class="wish-style-controls">
                                 <select id="wishFont">
@@ -91,55 +94,63 @@
                                     <option value="Alex Brush">Alex Brush</option>
                                 </select>
                                 <select id="wishBackground">
-                                    <option value="purple-pink">Фиолетово-розовый</option>
-                                    <option value="blue-red">Синий-красный</option>
-                                    <option value="green-purple">Зелёно-фиолетовый</option>
-                                    <option value="yellow-red">Жёлто-красный</option>
-                                    <option value="gold-dark">Золото-тёмный</option>
+                                    <option value="purple-pink">Күлгін-қызғылт</option>
+                                    <option value="blue-red">Көк-қызыл</option>
+                                    <option value="green-purple">Жасыл-күлгін</option>
+                                    <option value="yellow-red">Сары-қызыл</option>
+                                    <option value="gold-dark">Алтын-қою</option>
                                 </select>
                                 <select id="wishTextColor">
-                                    <option value="neon-pink">Розовый</option>
-                                    <option value="neon-blue">Синий</option>
-                                    <option value="neon-green">Зелёный</option>
-                                    <option value="neon-gold">Золотой</option>
-                                    <option value="neon-purple">Фиолетовый</option>
-                                    <option value="neon-red">Красный</option>
-                                    <option value="neon-cyan">Голубой</option>
-                                    <option value="neon-orange">Оранжевый</option>
+                                    <option value="neon-pink">Қызғылт</option>
+                                    <option value="neon-blue">Көк</option>
+                                    <option value="neon-green">Жасыл</option>
+                                    <option value="neon-gold">Алтын</option>
+                                    <option value="neon-purple">Күлгін</option>
+                                    <option value="neon-red">Қызыл</option>
+                                    <option value="neon-cyan">Көгілдір</option>
+                                    <option value="neon-orange">Сарғыш</option>
                                 </select>
                             </div>
                         </div>
-                        <button onclick="addWish()">Добавить пожелание</button>
-                        <div id="wishList"></div>
+                        <button onclick="addWish()">Тілек қосу</button>
+                        <div id="wishList" class="wish-list-container"></div>
+                        <div class="wish-counter">
+                            <span id="wishCount">0</span>/25 тілек қосылды
+                        </div>
                     </div>
                     
                     <button class="create-link-btn" onclick="generateLink()">
-                        ✨ Создать ссылку на открытку
+                        ✨ Ашық хатқа сілтеме жасау
                     </button>
                 </div>
                 
+                <!-- Алдын ала көру -->
                 <div class="preview-container">
-                    <h3>Предпросмотр:</h3>
+                    <h3>Алдын ала көру:</h3>
                     <div id="preview" class="preview-card bg-purple-pink">
-                        <h1 class="neon-preview neon-pink">С ДНЁМ РОЖДЕНИЯ!</h1>
-                        <h2 class="neon-preview-secondary neon-blue" id="previewName">ИМЯ</h2>
+                        <h1 class="neon-preview neon-pink">ТУҒАН КҮНІҢМЕН!</h1>
+                        <h2 class="neon-preview-secondary neon-blue" id="previewName">АТЫ</h2>
                         <div class="preview-wishes" id="previewWishes">
                             <div class="preview-wish-item">
-                                <p class="preview-wish-text">Добавьте пожелания...</p>
-                                <p class="preview-wish-sender">— От кого</p>
+                                <p class="preview-wish-text">Тілектер қосыңыз...</p>
+                                <p class="preview-wish-sender">— Кімнен</p>
                             </div>
                         </div>
-                        <p class="preview-main-sender" id="previewMainSender">От: Ваше имя</p>
+                        <p class="preview-main-sender" id="previewMainSender">Кімнен: Сіздің атыңыз</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Мереке беті -->
     <div id="celebration" class="page">
+        <!-- Таймер -->
         <div id="timerSection" class="timer-container">
             <div class="mechanical-clock">
                 <div class="clock-face">
+                    <div class="clock-outer-ring"></div>
+                    <div class="clock-inner-ring"></div>
                     <div class="clock-center"></div>
                     <div class="clock-hand hour-hand" id="hourHand"></div>
                     <div class="clock-hand minute-hand" id="minuteHand"></div>
@@ -158,16 +169,22 @@
                         <div class="number" style="--i: 11"><span>11</span></div>
                         <div class="number" style="--i: 12"><span>12</span></div>
                     </div>
+                    <div class="clock-decorations">
+                        <div class="decoration dec-1">✨</div>
+                        <div class="decoration dec-2">🎉</div>
+                        <div class="decoration dec-3">🎊</div>
+                        <div class="decoration dec-4">🎈</div>
+                    </div>
                 </div>
-                <h1 id="timerTitle" class="clock-title">До дня рождения</h1>
+                <h1 id="timerTitle" class="clock-title">Туған күнге дейін</h1>
                 <div class="digital-display">
                     <div class="time-unit">
                         <div class="time-number" id="days">0</div>
-                        <div class="time-label">Дней</div>
+                        <div class="time-label">Күн</div>
                     </div>
                     <div class="time-unit">
                         <div class="time-number" id="hours">0</div>
-                        <div class="time-label">Часов</div>
+                        <div class="time-label">Сағат</div>
                     </div>
                     <div class="time-unit">
                         <div class="time-number" id="minutes">0</div>
@@ -181,6 +198,7 @@
             </div>
         </div>
         
+        <!-- Торт және шамдар -->
         <div id="cakeSection" class="cake-section">
             <div class="cake-container">
                 <div class="candles-container">
@@ -192,28 +210,31 @@
                 </div>
                 <div class="cake">🎂</div>
             </div>
-            <p id="cakeMessage">Задуйте все свечи! (кликайте по ним или дуйте в микрофон)</p>
+            <p id="cakeMessage">Барлық шамдарды сөндіріңіз! (оларды басыңыз немесе микрофонға үрлеңіз)</p>
         </div>
         
+        <!-- Мерекелеу -->
         <div id="partySection" class="party-section">
             <div class="party-content">
-                <h1 class="neon-text party-title">С ПРАЗДНИКОМ ВАС!</h1>
-                <h2 class="neon-text-secondary party-name" id="partyName">ИМЯ</h2>
-                <p class="neon-text-tertiary party-subtitle">СЕГОДНЯ ВАШ ДЕНЬ!</p>
+                <h1 class="neon-text party-title">МЕРЕКЕҢІЗБЕН!</h1>
+                <h2 class="neon-text-secondary party-name" id="partyName">АТЫ</h2>
+                <p class="neon-text-tertiary party-subtitle">БҮГІН СІЗДІҢ КҮНІҢІЗ!</p>
                 
                 <div class="wish-card" id="wishCard">
                     <div class="gift-icon">🎁</div>
-                    <p class="wish-text" id="currentWish">Пожелание</p>
-                    <p class="wish-sender" id="currentWishSender">— От кого</p>
+                    <p class="wish-text" id="currentWish">Тілек</p>
+                    <p class="wish-sender" id="currentWishSender">— Кімнен</p>
                 </div>
             </div>
         </div>
         
+        <!-- Эффекттер -->
         <div id="confetti" class="confetti-container"></div>
         <div id="fireworks" class="fireworks-container"></div>
         <div class="particles"></div>
     </div>
 
+    <!-- Дыбыстар -->
     <audio id="birthdayMusic" loop>
         <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/wav">
         <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/zapsplat_multimedia_alert_chime_musical_warm_61735.mp3" type="audio/mpeg">
