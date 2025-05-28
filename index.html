@@ -1,38 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 День Рождения - Создай Интерактивную Открытку</title>
+    <title>🎂 День Рождения - Интерактивная Открытка</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;700&family=Satisfy&family=Allura&family=Alex+Brush&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;700&family=Satisfy&family=Allura&family=Alex+Brush&family=Sacramento&family=Tangerine:wght@400;700&family=Courgette&family=Bad+Script&family=Marck+Script&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Редактор открыток -->
     <div id="editor" class="page active">
         <div class="container">
-            <h1 class="neon-text">🎂 Редактор Открыток День Рождения</h1>
+            <h1 class="neon-text neon-pink">🎂 Создайте Открытку на День Рождения</h1>
             
             <div class="editor-layout">
                 <!-- Форма редактора -->
                 <div class="editor-form">
                     <div class="form-group">
                         <label>Имя именинника:</label>
-                        <input type="text" id="birthdayName" placeholder="Введите имя">
+                        <input type="text" id="birthdayName" placeholder="Введите имя именинника">
                     </div>
                     
                     <div class="form-group">
-                        <label>Дата дня рождения:</label>
+                        <label>Дата и время дня рождения:</label>
                         <input type="datetime-local" id="birthdayDate">
                     </div>
                     
                     <div class="form-group">
-                        <label>От кого:</label>
+                        <label>От кого открытка:</label>
                         <input type="text" id="senderName" placeholder="Ваше имя">
                     </div>
                     
                     <div class="form-group">
-                        <label>Шрифт:</label>
+                        <label>Основной шрифт:</label>
                         <select id="fontSelect">
                             <option value="Dancing Script">Dancing Script (Красивый)</option>
                             <option value="Great Vibes">Great Vibes (Элегантный)</option>
@@ -43,24 +44,30 @@
                             <option value="Satisfy">Satisfy (Утончённый)</option>
                             <option value="Allura">Allura (Роскошный)</option>
                             <option value="Alex Brush">Alex Brush (Кисть)</option>
-                            <option value="serif">Serif (Классический)</option>
-                            <option value="sans-serif">Sans-serif (Простой)</option>
+                            <option value="Sacramento">Sacramento (Изящный)</option>
+                            <option value="Tangerine">Tangerine (Лёгкий)</option>
+                            <option value="Courgette">Courgette (Весёлый)</option>
+                            <option value="Bad Script">Bad Script (Небрежный)</option>
+                            <option value="Marck Script">Marck Script (Классический)</option>
+                            <option value="Cormorant Garamond">Cormorant Garamond (Серьёзный)</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label>Фон:</label>
+                        <label>Фон открытки:</label>
                         <select id="backgroundSelect">
                             <option value="purple-pink">Фиолетово-розовый</option>
                             <option value="blue-red">Синий-красный</option>
                             <option value="green-purple">Зелёно-фиолетовый</option>
                             <option value="yellow-red">Жёлто-красный</option>
                             <option value="gold-dark">Золото-тёмный</option>
+                            <option value="rainbow">Радужный</option>
+                            <option value="sunset">Закат</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label>Цвет текста:</label>
+                        <label>Цвет основного текста:</label>
                         <select id="textColorSelect">
                             <option value="neon-pink">Неоновый розовый</option>
                             <option value="neon-blue">Неоновый синий</option>
@@ -70,17 +77,17 @@
                             <option value="neon-red">Неоновый красный</option>
                             <option value="neon-cyan">Неоновый голубой</option>
                             <option value="neon-orange">Неоновый оранжевый</option>
+                            <option value="neon-white">Неоновый белый</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label>Пожелания:</label>
                         <div class="wish-settings">
-                            <div class="wish-inputs">
-                                <textarea id="wishInput" placeholder="Введите пожелание" rows="3"></textarea>
-                                <input type="text" id="wishSender" placeholder="От кого это пожелание">
-                            </div>
-                            <div class="wish-style-controls">
+                            <textarea id="wishInput" placeholder="Введите ваше пожелание..." rows="3"></textarea>
+                            <input type="text" id="wishSender" placeholder="От кого это пожелание">
+                            
+                            <div class="wish-controls">
                                 <select id="wishFont">
                                     <option value="Dancing Script">Dancing Script</option>
                                     <option value="Great Vibes">Great Vibes</option>
@@ -91,14 +98,18 @@
                                     <option value="Satisfy">Satisfy</option>
                                     <option value="Allura">Allura</option>
                                     <option value="Alex Brush">Alex Brush</option>
+                                    <option value="Sacramento">Sacramento</option>
                                 </select>
+                                
                                 <select id="wishBackground">
                                     <option value="purple-pink">Фиолетово-розовый</option>
                                     <option value="blue-red">Синий-красный</option>
                                     <option value="green-purple">Зелёно-фиолетовый</option>
                                     <option value="yellow-red">Жёлто-красный</option>
                                     <option value="gold-dark">Золото-тёмный</option>
+                                    <option value="rainbow">Радужный</option>
                                 </select>
+                                
                                 <select id="wishTextColor">
                                     <option value="neon-pink">Розовый</option>
                                     <option value="neon-blue">Синий</option>
@@ -108,24 +119,25 @@
                                     <option value="neon-red">Красный</option>
                                     <option value="neon-cyan">Голубой</option>
                                     <option value="neon-orange">Оранжевый</option>
+                                    <option value="neon-white">Белый</option>
                                 </select>
                             </div>
                         </div>
-                        <button onclick="addWish()">Добавить пожелание</button>
-                        <div id="wishList"></div>
+                        <button onclick="addWish()" class="add-wish-btn">➕ Добавить пожелание</button>
+                        <div id="wishList" class="wish-list"></div>
                     </div>
                     
                     <button class="create-link-btn" onclick="generateLink()">
-                        ✨ Создать ссылку на открытку
+                        ✨ Создать ссылку на открытку ✨
                     </button>
                 </div>
                 
                 <!-- Предпросмотр -->
                 <div class="preview-container">
-                    <h3>Предпросмотр:</h3>
+                    <h3 class="preview-title">Предпросмотр открытки:</h3>
                     <div id="preview" class="preview-card bg-purple-pink">
-                        <h1 class="neon-preview neon-pink">С ДНЁМ РОЖДЕНИЯ!</h1>
-                        <h2 class="neon-preview-secondary neon-blue" id="previewName">ИМЯ</h2>
+                        <h1 class="neon-preview neon-pink">🎉 С ДНЁМ РОЖДЕНИЯ! 🎉</h1>
+                        <h2 class="neon-preview-secondary neon-blue" id="previewName">ИМЯ ИМЕНИННИКА</h2>
                         <div class="preview-wishes" id="previewWishes">
                             <div class="preview-wish-item">
                                 <p class="preview-wish-text">Добавьте пожелания...</p>
@@ -141,76 +153,74 @@
 
     <!-- Страница празднования -->
     <div id="celebration" class="page">
-        <!-- Таймер -->
+        <!-- Таймер обратного отсчёта -->
         <div id="timerSection" class="timer-container">
-            <div class="mechanical-clock">
-                <div class="clock-face">
-                    <div class="clock-center"></div>
-                    <div class="clock-hand hour-hand" id="hourHand"></div>
-                    <div class="clock-hand minute-hand" id="minuteHand"></div>
-                    <div class="clock-hand second-hand" id="secondHand"></div>
-                    <div class="clock-numbers">
-                        <div class="number" style="--i: 1"><span>1</span></div>
-                        <div class="number" style="--i: 2"><span>2</span></div>
-                        <div class="number" style="--i: 3"><span>3</span></div>
-                        <div class="number" style="--i: 4"><span>4</span></div>
-                        <div class="number" style="--i: 5"><span>5</span></div>
-                        <div class="number" style="--i: 6"><span>6</span></div>
-                        <div class="number" style="--i: 7"><span>7</span></div>
-                        <div class="number" style="--i: 8"><span>8</span></div>
-                        <div class="number" style="--i: 9"><span>9</span></div>
-                        <div class="number" style="--i: 10"><span>10</span></div>
-                        <div class="number" style="--i: 11"><span>11</span></div>
-                        <div class="number" style="--i: 12"><span>12</span></div>
-                    </div>
+            <h1 class="timer-title neon-text neon-gold">До дня рождения осталось:</h1>
+            <div class="timer-display">
+                <div class="time-unit">
+                    <div class="time-number neon-pink" id="days">0</div>
+                    <div class="time-label">Дней</div>
                 </div>
-                <h1 id="timerTitle" class="clock-title">До дня рождения</h1>
-                <div class="digital-display">
-                    <div class="time-unit">
-                        <div class="time-number" id="days">0</div>
-                        <div class="time-label">Дней</div>
-                    </div>
-                    <div class="time-unit">
-                        <div class="time-number" id="hours">0</div>
-                        <div class="time-label">Часов</div>
-                    </div>
-                    <div class="time-unit">
-                        <div class="time-number" id="minutes">0</div>
-                        <div class="time-label">Минут</div>
-                    </div>
-                    <div class="time-unit">
-                        <div class="time-number" id="seconds">0</div>
-                        <div class="time-label">Секунд</div>
-                    </div>
+                <div class="time-separator neon-blue">:</div>
+                <div class="time-unit">
+                    <div class="time-number neon-green" id="hours">0</div>
+                    <div class="time-label">Часов</div>
+                </div>
+                <div class="time-separator neon-blue">:</div>
+                <div class="time-unit">
+                    <div class="time-number neon-cyan" id="minutes">0</div>
+                    <div class="time-label">Минут</div>
+                </div>
+                <div class="time-separator neon-blue">:</div>
+                <div class="time-unit">
+                    <div class="time-number neon-orange" id="seconds">0</div>
+                    <div class="time-label">Секунд</div>
                 </div>
             </div>
+            <div class="birthday-emoji">🎂🎉🎈🎁</div>
         </div>
         
         <!-- Торт и свечи -->
         <div id="cakeSection" class="cake-section">
+            <h2 class="cake-title neon-text neon-gold">Задуйте все свечи!</h2>
             <div class="cake-container">
                 <div class="candles-container">
-                    <div class="candle active" data-candle="1" onclick="blowOutCandle(this)">🕯️</div>
-                    <div class="candle active" data-candle="2" onclick="blowOutCandle(this)">🕯️</div>
-                    <div class="candle active" data-candle="3" onclick="blowOutCandle(this)">🕯️</div>
-                    <div class="candle active" data-candle="4" onclick="blowOutCandle(this)">🕯️</div>
-                    <div class="candle active" data-candle="5" onclick="blowOutCandle(this)">🕯️</div>
+                    <div class="candle active" onclick="blowOutCandle(this)">
+                        <div class="candle-body"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle active" onclick="blowOutCandle(this)">
+                        <div class="candle-body"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle active" onclick="blowOutCandle(this)">
+                        <div class="candle-body"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle active" onclick="blowOutCandle(this)">
+                        <div class="candle-body"></div>
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle active" onclick="blowOutCandle(this)">
+                        <div class="candle-body"></div>
+                        <div class="flame"></div>
+                    </div>
                 </div>
                 <div class="cake">🎂</div>
             </div>
-            <p id="cakeMessage">Задуйте все свечи! (кликайте по ним или дуйте в микрофон)</p>
+            <p class="cake-message">Нажмите на свечи или дуйте в микрофон!</p>
         </div>
         
         <!-- Празднование -->
         <div id="partySection" class="party-section">
             <div class="party-content">
-                <h1 class="neon-text party-title">С ПРАЗДНИКОМ ВАС!</h1>
-                <h2 class="neon-text-secondary party-name" id="partyName">ИМЯ</h2>
-                <p class="neon-text-tertiary party-subtitle">СЕГОДНЯ ВАШ ДЕНЬ!</p>
+                <h1 class="party-title neon-text neon-pink">🎉 С ПРАЗДНИКОМ ВАС! 🎉</h1>
+                <h2 class="party-name neon-text neon-gold" id="partyName">ИМЯ</h2>
+                <p class="party-subtitle neon-text neon-cyan">СЕГОДНЯ ВАШ ДЕНЬ!</p>
                 
                 <div class="wish-card" id="wishCard">
                     <div class="gift-icon">🎁</div>
-                    <p class="wish-text" id="currentWish">Пожелание</p>
+                    <p class="wish-text" id="currentWish">Пожелание будет здесь</p>
                     <p class="wish-sender" id="currentWishSender">— От кого</p>
                 </div>
             </div>
@@ -219,29 +229,7 @@
         <!-- Эффекты -->
         <div id="confetti" class="confetti-container"></div>
         <div id="fireworks" class="fireworks-container"></div>
-        <div class="particles"></div>
     </div>
-
-    <!-- Звуки -->
-    <audio id="birthdayMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/wav">
-        <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/zapsplat_multimedia_alert_chime_musical_warm_61735.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="candleBlowSound">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-        <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/zapsplat_foley_candle_blow_out_001_24696.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="celebrationSound">
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/wav">
-        <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/zapsplat_multimedia_game_sound_celebration_positive_cheerful_001_92773.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="fireworkSound">
-        <source src="https://www.soundjay.com/misc/sounds/magic-wand-01.wav" type="audio/wav">
-        <source src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-one/zapsplat_explosion_firework_single_burst_bright_001_24713.mp3" type="audio/mpeg">
-    </audio>
 
     <script src="hbday.js"></script>
 </body>
