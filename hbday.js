@@ -1,3 +1,4 @@
+
 // Данные открытки
 let wishes = [];
 let currentWishIndex = 0;
